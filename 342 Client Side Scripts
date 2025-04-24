@@ -1,0 +1,15 @@
+Lubuntu “Installer File”: soundpack2025_Pro.sh​
+
+Runs the python script​
+
+exampleSound.py​
+
+socket.socket(...): Creates a TCP client socket.​
+
+connect(...): Connects to the attacker's IP (10.10.10.5) on port 4444.​
+
+recv(...): Waits for command input from the attacker.​
+
+subprocess.check_output(...): Executes the received command on the local system.​
+
+send(...): Sends command output (or a default success message) back to the server.
