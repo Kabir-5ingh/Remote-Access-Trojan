@@ -1,0 +1,15 @@
+SillyRat.py​
+
+socket.socket(...): Creates a TCP socket.​
+
+bind((HOST, PORT)): Binds the server to all interfaces (0.0.0.0) on port 4444.​
+
+listen(1): Listens for 1 incoming connection.​
+
+accept(): Accepts a connection and grabs client IP + socket.​
+
+input(...): Takes command input from the attacker.​
+
+send(...): Sends the command to the client.​
+
+recv(...): Receives and prints the client's response.
